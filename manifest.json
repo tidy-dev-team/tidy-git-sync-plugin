@@ -1,0 +1,10 @@
+{
+  "api": "1.0.0",
+  "editorType": [
+    "figma"
+  ],
+  "id": "tidy-git-sync",
+  "name": "Tidy Git Sync",
+  "main": "build/main.js",
+  "ui": "build/ui.js"
+}
