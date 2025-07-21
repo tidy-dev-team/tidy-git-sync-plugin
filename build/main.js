@@ -135,6 +135,36 @@ var init_convertValueToTailwind = __esm({
   }
 });
 
+// src/updateCodeOnServer.ts
+async function updateGapOnServer(newGapClass) {
+  const serverUrl = "https://tidyframework.com/api/update-gap";
+  try {
+    const response = await fetch(serverUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ newGapClass })
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.details || result.error || "Unknown server error");
+    }
+    figma.notify(`\u2705 Component updated successfully!`);
+    console.log("Server response:", result);
+  } catch (error) {
+    console.error("Failed to update component:", error);
+    figma.notify(`\u274C Error: Could not connect to the update server.`, {
+      error: true
+    });
+  }
+}
+var init_updateCodeOnServer = __esm({
+  "src/updateCodeOnServer.ts"() {
+    "use strict";
+  }
+});
+
 // src/main.ts
 var main_exports = {};
 __export(main_exports, {
@@ -165,7 +195,7 @@ function main_default() {
         "gap",
         defaultComponent.itemSpacing
       );
-      console.log("twSpacing", twSpacing);
+      updateGapOnServer(twSpacing);
     }
   });
   showUI({
@@ -178,6 +208,7 @@ var init_main = __esm({
     "use strict";
     init_lib();
     init_convertValueToTailwind();
+    init_updateCodeOnServer();
   }
 });
 

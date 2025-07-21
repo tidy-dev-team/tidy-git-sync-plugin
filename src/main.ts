@@ -1,5 +1,6 @@
 import { on, showUI } from "@create-figma-plugin/utilities";
 import { convertValueToTailwind } from "./convertValueToTailwind";
+import { updateGapOnServer } from "./updateCodeOnServer";
 
 function getSelectedComponentSetDefaultVariant(): ComponentNode | null {
   const selection = figma.currentPage.selection;
@@ -30,7 +31,7 @@ export default function () {
         "gap",
         defaultComponent.itemSpacing
       );
-      console.log("twSpacing", twSpacing);
+      updateGapOnServer(twSpacing);
     }
   });
   showUI({
