@@ -1,5 +1,6 @@
 export async function updateGapOnServer(newGapClass: string): Promise<void> {
   const serverUrl = "https://tidyframework.com/api/update-gap";
+  console.log("trying my best");
 
   try {
     const response = await fetch(serverUrl, {
@@ -9,8 +10,9 @@ export async function updateGapOnServer(newGapClass: string): Promise<void> {
       },
       body: JSON.stringify({ newGapClass: newGapClass }),
     });
-
+    console.log(response);
     const result = await response.json();
+    console.log("result", result);
 
     if (!response.ok) {
       throw new Error(result.details || result.error || "Unknown server error");

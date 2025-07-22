@@ -20,8 +20,8 @@ function getSelectedComponentSetDefaultVariant(): ComponentNode | null {
   return componentSet.defaultVariant;
 }
 
-export default function () {
-  on("SYNC", function (data) {
+export default async function () {
+  on("SYNC", async function (data) {
     const defaultComponent = getSelectedComponentSetDefaultVariant();
     if (defaultComponent) {
       console.log(
@@ -31,7 +31,7 @@ export default function () {
         "gap",
         defaultComponent.itemSpacing
       );
-      updateGapOnServer(twSpacing);
+      await updateGapOnServer(twSpacing);
     }
   });
   showUI({
