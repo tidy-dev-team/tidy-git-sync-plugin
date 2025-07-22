@@ -12,9 +12,7 @@ import { emit } from "@create-figma-plugin/utilities";
 import { h } from "preact";
 
 function Plugin() {
-  function handleSync() {
-    emit("SYNC");
-  }
+  const handleSync = () => emit("SYNC");
   return (
     <Container space="medium">
       <VerticalSpace space="large" />
